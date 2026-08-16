@@ -9,6 +9,7 @@
 -- 	b. Disable option + arrow key navigation in normal mode (this should just be vim motion 'b')
 -- 2. Allow macOS navigation during insert mode
 -- 3. Extra transitions out of modes into normal mode
+-- 4. Window management
 -- ]]
 
 -- 1a. Disable default/macOS navigation
@@ -45,3 +46,11 @@ vim.keymap.set('i', 'kkj', '<Esc>', { desc = 'Exit insert mode and return to nor
 
 vim.keymap.set('t', 'jjk', '[[<C-><C-n>]]', { desc = 'Exit terminal mode and return to normal mode' })
 vim.keymap.set('t', 'kkj', '[[<C-><C-n>]]', { desc = 'Exit terminal mode and return to normal mode' })
+
+-- 4. Window management
+    -- see `:help wincmd`
+    -- <C-w> is short hand for wincmd I think
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the lower window' })

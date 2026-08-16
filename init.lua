@@ -13,16 +13,15 @@
 -- ]]
 
 -- 1. leader key setup
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- 1a. [optional] nerd font enablement
 vim.g.have_nerd_font = true
 
 -- 2. include core (personal) configuration
-require 'core'
+require("core")
 
 -- 3. bootstrap lazy package manager and all the specified plugins
-require 'package-manager'
-
+require("package_manager")
 
