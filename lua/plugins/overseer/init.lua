@@ -34,6 +34,16 @@ return {
 		overseer.register_template(
 			require('plugins.overseer.providers.scripts')
 		)
+
+		-- adding hook for (broad/general) quickfix task list
+		-- note: although we hooked up the quickfix list into overseer - quickfix is not strictly overseer related, keymaps are in nvim keymaps
+		overseer.add_template_hook({}, function(task_defn, util)
+			util.add_component(task_defn, {
+				'on_output_quickfix',
+				open = false, -- certain overseer tasks might not have a valid output. lets not always open the quickfix list
+			})
+		end)
+
 	end,
 }
 

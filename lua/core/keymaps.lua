@@ -10,6 +10,7 @@
 -- 2. Allow macOS navigation during insert mode
 -- 3. Extra transitions out of modes into normal mode
 -- 4. Window management
+-- 5. Quickfix list
 -- ]]
 
 -- 1a. Disable default/macOS navigation
@@ -54,3 +55,26 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the lower window' })
+
+-- 5. Quickfix list
+vim.keymap.set('n', ']q', '<cmd>cnext<CR>', { desc = 'Next quickfix item' })
+vim.keymap.set('n', '[q', '<cmd>cprev<CR>', { desc = 'Previous quickfix item' })
+
+-- make shift toggle for quickfix list show
+vim.keymap.set('n', '<leader>q', function()
+	local quickfix_open = false
+
+	-- iterate over all open windows and see if its a quickfix window
+	for _, win in ipairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			quickfix_open = true
+			break
+		end
+	end
+
+	if quickfix_open then
+		vim.cmd('cclose')
+	else
+		vim.cmd('copen')
+	end
+end, { desc = 'Toggle quickfix list' })
