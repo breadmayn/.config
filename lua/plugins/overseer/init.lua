@@ -27,5 +27,16 @@ return {
 	keys = keymaps,
 
 	opts = {},
+
+	config = function(_, opts)
+		local overseer = require('overseer')
+
+		overseer.setup(opts)
+
+		-- registering script fallback template if necessary (this is conditionalized already if a scripts dir exist)
+		overseer.register_template(
+			require('plugins.overseer.providers.scripts')
+		)
+	end,
 }
 
