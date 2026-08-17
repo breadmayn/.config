@@ -37,6 +37,19 @@ vim.opt.listchars = {
 	nbsp = '␣'
 }
 
+-- case sensitivity when searching
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- preview substitutions live as you type
+vim.o.inccommand = 'split'
+
+-- setting number of screen lines to keep above and below the cursor
+vim.o.scrolloff = 15
+
+-- when performing an operation that would fail dur to unsaved changes, raise dialog asking if you would like to save the current files
+vim.o.confirm = true
+
 -- 1a. default indentation configuration --
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
