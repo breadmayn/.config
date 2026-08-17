@@ -44,8 +44,8 @@ vim.keymap.set('i', '<M-BS>', '<C-w>', { desc = 'macOS style backspace to clear 
 vim.keymap.set('i', 'jjk', '<Esc>', { desc = 'Exit insert mode and return to normal mode' })
 vim.keymap.set('i', 'kkj', '<Esc>', { desc = 'Exit insert mode and return to normal mode' })
 
-vim.keymap.set('t', 'jjk', '[[<C-><C-n>]]', { desc = 'Exit terminal mode and return to normal mode' })
-vim.keymap.set('t', 'kkj', '[[<C-><C-n>]]', { desc = 'Exit terminal mode and return to normal mode' })
+vim.keymap.set('t', 'jjk', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
+vim.keymap.set('t', 'kkj', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
 
 -- 4. Window management
     -- see `:help wincmd`
