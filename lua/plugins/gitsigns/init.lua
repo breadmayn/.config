@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/plugins/gitsigns.lua
+-- lua/plugins/gitsigns/init.lua
 --
 -- This file will import gitsigns.nvim and include our current configuration of the plugin
 --
@@ -12,11 +12,16 @@
 return {
 	'lewis6991/gitsigns.nvim',
 
+	-- specify the event that gitsigns should attach to
 	event = {
 		'BufReadPre',
 		'BufNewFile',
 	},
 
-	opts = {},
+	opts = {
+		on_attach = function(bufnr)
+			require('plugins.gitsigns.keymaps').setup(bufnr)
+		end,
+	},
 }
 
