@@ -1,20 +1,25 @@
 # Neovim Configuration
 
-A modular Neovim configuration built with the goal of keeping editor behavior,
-plugin configuration, language-specific configuration, and external tooling
-separate and easy to reason about.
+A modular Neovim configuration built with the goal of keeping editor
+behavior, plugin configuration, language-specific configuration, and
+external tooling separate and easy to reason about.
 
 ## Philosophy
 
 The configuration follows a few general rules:
 
-- `init.lua` should remain small and only bootstrap the rest of the configuration.
-- Core Neovim behavior should not depend on plugins.
-- Each plugin owns its own configuration.
-- Language-server-specific configuration should be separate from shared LSP behavior.
-- Language-specific editor behavior should use Neovim's `ftplugin` system.
-- External development tools are installed through Mason when appropriate.
-- Plugins should be lazy-loaded when there is a meaningful trigger for doing so.
+-   `init.lua` should remain small and only bootstrap the rest of the
+    configuration.
+-   Core Neovim behavior should not depend on plugins.
+-   Each plugin owns its own configuration.
+-   Language-server-specific configuration should be separate from
+    shared LSP behavior.
+-   Language-specific editor behavior should use Neovim's `ftplugin`
+    system.
+-   External development tools are installed through Mason when
+    appropriate.
+-   Plugins should be lazy-loaded when there is a meaningful trigger for
+    doing so.
 
 The goal is to make it possible to answer:
 
@@ -24,7 +29,7 @@ without having to search through the entire configuration.
 
 ## Structure
 
-```text
+``` text
 ~/.config/nvim/
 ├── init.lua
 │
@@ -33,6 +38,10 @@ without having to search through the entire configuration.
 │       └── lua.lua
 │
 └── lua/
+    ├── autocmds/
+    │   ├── init.lua
+    │   └── yank_highlight.lua
+    │
     ├── core/
     │   ├── init.lua
     │   ├── options.lua
@@ -56,12 +65,12 @@ without having to search through the entire configuration.
 
 The root `init.lua` is intentionally kept small.
 
-Its responsibility is to establish configuration that must exist early during
-startup and then delegate to the rest of the configuration.
+Its responsibility is to establish configuration that must exist early
+during startup and then delegate to the rest of the configuration.
 
 Conceptually:
 
-```text
+``` text
 init.lua
    │
    ├── global startup settings
@@ -70,20 +79,24 @@ init.lua
    ├── core
    │     └── Neovim behavior
    │
+   ├── autocmds
+   │     └── event-driven Neovim behavior
+   │
    └── package_manager
          └── plugins
 ```
 
-Keeping the entry point small makes the startup path easier to understand.
+Keeping the entry point small makes the startup path easier to
+understand.
 
----
+------------------------------------------------------------------------
 
 ## `lua/core/`
 
-Contains behavior belonging to **Neovim itself**, rather than to a particular
-plugin.
+Contains behavior belonging to **Neovim itself**, rather than to a
+particular plugin.
 
-```text
+``` text
 core/
 ├── init.lua
 ├── options.lua
@@ -99,19 +112,19 @@ Loads the individual core configuration modules.
 Contains global editor defaults such as indentation behavior and other
 `vim.opt` settings.
 
-These are defaults and may later be overridden for individual filetypes or by
-project configuration.
+These are defaults and may later be overridden for individual filetypes
+or by project configuration.
 
 ### `core/keymaps.lua`
 
 Contains global mappings that do not depend on a plugin.
 
-Plugin-specific mappings should generally live with the plugin that provides
-the functionality.
+Plugin-specific mappings should generally live with the plugin that
+provides the functionality.
 
 For example:
 
-```text
+``` text
 normal Vim mapping
     → core/keymaps.lua
 
@@ -122,9 +135,10 @@ LSP mapping
     → plugins/lsp.lua
 ```
 
-This prevents `core/keymaps.lua` from becoming coupled to installed plugins.
+This prevents `core/keymaps.lua` from becoming coupled to installed
+plugins.
 
----
+------------------------------------------------------------------------
 
 ## `after/ftplugin/`
 
@@ -132,7 +146,7 @@ Contains filetype-specific editor behavior.
 
 For example:
 
-```text
+``` text
 after/ftplugin/lua.lua
 ```
 
@@ -141,7 +155,7 @@ is loaded for Lua buffers and can override the global defaults from
 
 This provides the hierarchy:
 
-```text
+``` text
 global editor defaults
         ↓
 core/options.lua
@@ -155,7 +169,7 @@ project configuration
 
 This is useful for settings such as:
 
-```text
+``` text
 tabstop
 shiftwidth
 softtabstop
@@ -164,10 +178,10 @@ expandtab
 
 which often vary between languages.
 
-Project `.editorconfig` files can provide additional project-specific editor
-settings.
+Project `.editorconfig` files can provide additional project-specific
+editor settings.
 
----
+------------------------------------------------------------------------
 
 ## `lua/plugins/`
 
@@ -175,7 +189,7 @@ Contains Lazy plugin specifications.
 
 Each plugin should generally have its own file:
 
-```text
+``` text
 plugins/
 ├── conform.lua
 ├── lazydev.lua
@@ -191,38 +205,38 @@ These files answer:
 
 Plugin-specific keymaps should generally live here as well.
 
----
+------------------------------------------------------------------------
 
-## Plugin Management — lazy.nvim
+## Plugin Management --- lazy.nvim
 
 `lazy.nvim` manages Neovim plugins.
 
 The Lazy bootstrap and plugin discovery live behind:
 
-```text
+``` text
 lua/package_manager.lua
 ```
 
 Plugins may declare explicit loading triggers such as:
 
-```lua
+``` lua
 cmd = "SomeCommand"
 ```
 
 or:
 
-```lua
+``` lua
 keys = {
     { "<leader>x", ... },
 }
 ```
 
-These allow Lazy to know about a command or mapping without loading the plugin
-immediately.
+These allow Lazy to know about a command or mapping without loading the
+plugin immediately.
 
 For example:
 
-```text
+``` text
 Neovim starts
       ↓
 Telescope unloaded
@@ -236,18 +250,19 @@ Telescope loads
 picker executes
 ```
 
-Not every plugin should necessarily be lazy-loaded. Loading behavior should
-follow the requirements of the plugin rather than being an objective by itself.
+Not every plugin should necessarily be lazy-loaded. Loading behavior
+should follow the requirements of the plugin rather than being an
+objective by itself.
 
----
+------------------------------------------------------------------------
 
-## Tool Management — Mason
+## Tool Management --- Mason
 
 Mason manages external development tools used by Neovim.
 
 This is different from Lazy:
 
-```text
+``` text
 Lazy
   ↓
 Neovim plugins
@@ -259,23 +274,24 @@ external executables
 
 Examples include:
 
-```text
+``` text
 lua-language-server
 stylua
 clangd
 clang-format
 ```
 
-Mason allows these tools to be installed in Neovim's data directory instead of
-requiring every development tool to be installed globally on the machine.
+Mason allows these tools to be installed in Neovim's data directory
+instead of requiring every development tool to be installed globally on
+the machine.
 
----
+------------------------------------------------------------------------
 
 # Formatting
 
 Formatting is handled by:
 
-```text
+``` text
 Conform
    ↓
 external formatter
@@ -283,20 +299,21 @@ external formatter
 
 For Lua:
 
-```text
+``` text
 Conform
    ↓
 StyLua
 ```
 
-Conform does not format Lua itself. It determines which formatter should handle
-the current buffer and invokes that formatter.
+Conform does not format Lua itself. It determines which formatter should
+handle the current buffer and invokes that formatter.
 
-This keeps formatting orchestration separate from formatter implementation.
+This keeps formatting orchestration separate from formatter
+implementation.
 
 For example:
 
-```text
+``` text
 Lua       → StyLua
 C/C++     → clang-format
 Python    → formatter chosen later
@@ -304,15 +321,16 @@ Python    → formatter chosen later
 
 StyLua is installed through Mason.
 
-Formatting is currently invoked explicitly rather than automatically on save.
+Formatting is currently invoked explicitly rather than automatically on
+save.
 
----
+------------------------------------------------------------------------
 
 # Treesitter
 
 Treesitter provides **syntactic understanding** of source files.
 
-```text
+``` text
 source code
     ↓
 Treesitter parser
@@ -320,10 +338,10 @@ Treesitter parser
 syntax tree
 ```
 
-For example, Treesitter understands that source code contains constructs such
-as:
+For example, Treesitter understands that source code contains constructs
+such as:
 
-```text
+``` text
 function declarations
 identifiers
 expressions
@@ -331,12 +349,12 @@ parameters
 return statements
 ```
 
-This structural information can be used for syntax highlighting and other
-syntax-aware editor functionality.
+This structural information can be used for syntax highlighting and
+other syntax-aware editor functionality.
 
 Treesitter should not be confused with LSP.
 
-```text
+``` text
 Treesitter
     → syntax / structure
 
@@ -344,7 +362,7 @@ LSP
     → semantic meaning
 ```
 
----
+------------------------------------------------------------------------
 
 # LSP
 
@@ -354,7 +372,7 @@ Language servers provide semantic understanding of source code.
 
 For Lua:
 
-```text
+``` text
 Lua source
     ↓
 lua-language-server
@@ -364,7 +382,7 @@ Neovim LSP client
 
 This enables functionality such as:
 
-```text
+``` text
 go to definition
 find references
 hover documentation
@@ -374,26 +392,26 @@ diagnostics
 completion information
 ```
 
-`nvim-lspconfig` provides standard server configurations used by Neovim's
-built-in LSP client.
+`nvim-lspconfig` provides standard server configurations used by
+Neovim's built-in LSP client.
 
-`mason-lspconfig.nvim` connects Mason-installed language servers with these
-Neovim LSP configurations.
+`mason-lspconfig.nvim` connects Mason-installed language servers with
+these Neovim LSP configurations.
 
----
+------------------------------------------------------------------------
 
 ## Shared LSP behavior
 
 Shared LSP behavior lives in:
 
-```text
+``` text
 plugins/lsp.lua
 ```
 
-An `LspAttach` autocommand creates buffer-local mappings whenever a language
-server attaches:
+An `LspAttach` autocommand creates buffer-local mappings whenever a
+language server attaches:
 
-```text
+``` text
 LSP attaches
      ↓
 LspAttach event
@@ -403,12 +421,12 @@ configure that buffer
 LSP mappings become available
 ```
 
-Because the mappings are buffer-local, LSP-specific mappings only exist where
-LSP functionality is actually available.
+Because the mappings are buffer-local, LSP-specific mappings only exist
+where LSP functionality is actually available.
 
 The same behavior can therefore work for multiple language servers:
 
-```text
+``` text
 Lua      → lua_ls
 C/C++    → clangd
 Python   → future server
@@ -417,21 +435,21 @@ Python   → future server
        shared LspAttach
 ```
 
----
+------------------------------------------------------------------------
 
 ## Server-specific LSP configuration
 
 Language-server-specific configuration is separated from the shared LSP
 infrastructure:
 
-```text
+``` text
 lua/lsp/
 └── lua_ls.lua
 ```
 
 For example:
 
-```text
+``` text
 plugins/lsp.lua
       ↓
 vim.lsp.config("lua_ls", ...)
@@ -445,7 +463,7 @@ lsp/lua_ls.lua
 
 while:
 
-```text
+``` text
 lsp/lua_ls.lua
 ```
 
@@ -456,7 +474,7 @@ answers:
 Additional servers that require custom configuration can follow the same
 pattern:
 
-```text
+``` text
 lsp/
 ├── lua_ls.lua
 ├── clangd.lua
@@ -466,19 +484,19 @@ lsp/
 A separate file is not necessary when the default LSP configuration is
 sufficient.
 
----
+------------------------------------------------------------------------
 
 # LazyDev
 
-LazyDev improves the Lua development environment used for editing the Neovim
-configuration itself.
+LazyDev improves the Lua development environment used for editing the
+Neovim configuration itself.
 
-It works alongside `lua_ls` to provide additional workspace/library knowledge
-for Neovim plugins and Lua modules.
+It works alongside `lua_ls` to provide additional workspace/library
+knowledge for Neovim plugins and Lua modules.
 
 Conceptually:
 
-```text
+``` text
 Lua config
     ↓
 lua_ls
@@ -488,13 +506,13 @@ LazyDev provides additional library knowledge
 
 LuaLS-specific settings still belong in:
 
-```text
+``` text
 lsp/lua_ls.lua
 ```
 
 LazyDev does not replace LuaLS.
 
----
+------------------------------------------------------------------------
 
 # Telescope
 
@@ -502,7 +520,7 @@ Telescope provides interactive fuzzy-finding and selection interfaces.
 
 Current uses include:
 
-```text
+``` text
 find files
 search project text
 find buffers
@@ -513,7 +531,7 @@ Telescope can also act as a UI for LSP results.
 
 For example:
 
-```text
+``` text
 gd
  ↓
 Telescope
@@ -529,7 +547,7 @@ Telescope picker
 
 The important distinction is:
 
-```text
+``` text
 LSP
     → determines where definitions/references are
 
@@ -539,7 +557,7 @@ Telescope
 
 Telescope does not provide language intelligence itself.
 
----
+------------------------------------------------------------------------
 
 # Completion
 
@@ -547,7 +565,7 @@ Completion is provided by `blink.cmp`.
 
 The completion pipeline is:
 
-```text
+``` text
 language server
       ↓
 Neovim LSP client
@@ -559,7 +577,7 @@ completion menu
 
 Blink can gather completion candidates from several sources:
 
-```text
+``` text
 LSP
 buffer
 filesystem paths
@@ -568,16 +586,16 @@ snippets
 
 For example, while editing Lua:
 
-```lua
+``` lua
 vim.api.nvim_
 ```
 
-LuaLS understands the available Neovim API members and Blink presents those
-completion candidates.
+LuaLS understands the available Neovim API members and Blink presents
+those completion candidates.
 
 Again, responsibilities remain separate:
 
-```text
+``` text
 lua_ls
     → knows what completions are valid
 
@@ -585,13 +603,13 @@ blink.cmp
     → presents and manages completion
 ```
 
----
+------------------------------------------------------------------------
 
 # Current Architecture
 
 The major pieces currently fit together like this:
 
-```text
+``` text
                          Neovim
                             │
         ┌───────────────────┼────────────────────┐
@@ -600,6 +618,8 @@ The major pieces currently fit together like this:
      Editing             Parsing              Search/UI
         │                   │                    │
 core/options.lua       Treesitter            Telescope
+core/keymaps.lua
+autocmds/*
 after/ftplugin/*
 
                             │
@@ -625,7 +645,7 @@ after/ftplugin/*
 
 Supporting infrastructure:
 
-```text
+``` text
 Lazy
     → installs/manages Neovim plugins
 
@@ -633,28 +653,29 @@ Mason
     → installs/manages external development tools
 ```
 
----
+------------------------------------------------------------------------
 
 # Configuration Ownership
 
 When adding functionality, first determine who should own it.
 
-| Behavior | Location |
-|---|---|
-| Global Neovim option | `core/options.lua` |
-| Global Neovim keymap | `core/keymaps.lua` |
-| Filetype-specific editor behavior | `after/ftplugin/<filetype>.lua` |
-| Plugin installation/configuration | `plugins/<plugin>.lua` |
-| Plugin-specific keymap | `plugins/<plugin>.lua` |
-| Shared LSP behavior | `plugins/lsp.lua` |
-| Server-specific LSP settings | `lsp/<server>.lua` |
-| Project editor conventions | `.editorconfig` |
-| Formatter-specific project rules | formatter configuration |
+  Behavior                              Location
+  ------------------------------------- ---------------------------------
+  Global Neovim option                  `core/options.lua`
+  Global Neovim keymap                  `core/keymaps.lua`
+  Global event-driven Neovim behavior   `autocmds/<behavior>.lua`
+  Filetype-specific editor behavior     `after/ftplugin/<filetype>.lua`
+  Plugin installation/configuration     `plugins/<plugin>.lua`
+  Plugin-specific keymap                `plugins/<plugin>.lua`
+  Shared LSP behavior                   `plugins/lsp.lua`
+  Server-specific LSP settings          `lsp/<server>.lua`
+  Project editor conventions            `.editorconfig`
+  Formatter-specific project rules      formatter configuration
 
-The goal is not to create a file for every possible concern. New modules should
-be introduced when they create a meaningful ownership boundary.
+The goal is not to create a file for every possible concern. New modules
+should be introduced when they create a meaningful ownership boundary.
 
----
+------------------------------------------------------------------------
 
 # Guiding Principle
 
@@ -662,7 +683,7 @@ Prefer understanding and explicit ownership over adding abstractions.
 
 A configuration should be easy to trace:
 
-```text
+``` text
 "What happens when I press this?"
 "What loaded this plugin?"
 "Who installed this executable?"
@@ -670,5 +691,6 @@ A configuration should be easy to trace:
 "Where is this language server configured?"
 ```
 
-If answering one of those questions requires searching through many unrelated
-files, the configuration likely needs a clearer ownership boundary.
+If answering one of those questions requires searching through many
+unrelated files, the configuration likely needs a clearer ownership
+boundary.
