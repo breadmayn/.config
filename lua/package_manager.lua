@@ -43,6 +43,12 @@ vim.opt.rtp:prepend(lazypath)
 -- now require lazy plugin during nvim boot
 require("lazy").setup({
 	spec = {
+		-- loads all plugins under the plugins dir
 		{ import = "plugins" },
+	},
+
+	-- ssh preference for git
+	git = {
+		url_format = 'git@github.com:%s.git',
 	},
 })
