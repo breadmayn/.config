@@ -1,12 +1,15 @@
 -- [[
 --
--- lua/plugins/neo-tree.lua
+-- lua/plugins/neotree/init.lua
 --
 -- This file will import neo-tree.nvim and include our configuration of the plugin
 --
 -- Neo-tree is a plugin that replaces netrw by giving IDE-like navigation over the current project directory
 --
 -- ]]
+
+-- load keymaps from keymap file
+local keymaps = require('plugins.neotree.keymaps')
 
 return {
 	'nvim-neo-tree/neo-tree.nvim',
@@ -21,15 +24,7 @@ return {
 	lazy = false,
 
 	-- keymaps related to neo-tree
-	keys = {
-
-		{
-			'<leader>e',
-			'<cmd>Neotree toggle reveal<CR>',
-			desc = 'Toggle file explorer'
-		},
-
-	},
+	keys = keymaps,
 
 	-- settings
 	opts = {

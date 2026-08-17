@@ -34,3 +34,4 @@ return {
 		treesitter.install(parsers)
 	end,
 }
+

@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/lsp/clangd_ls.lua
+-- lua/lsp/servers/clangd.lua
 --
 -- This file denotes clangdLS specific configurations
 --

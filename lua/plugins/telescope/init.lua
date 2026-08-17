@@ -1,12 +1,15 @@
 -- [[
 --
--- lua/plugins/telescope.lua
+-- lua/plugins/telescope/init.lua
 --
 -- This file will import telescope.nvim and include our configuration of the plugin
 --
 -- Telescope is a plugin which provides fuzzy finder functionality for an extendable set of lists
 --
 -- ]]
+
+-- load keymaps from keymap file
+local keymaps = require('plugins.telescope.keymaps')
 
 return {
 	'nvim-telescope/telescope.nvim',
@@ -22,40 +25,7 @@ return {
 	cmd = { 'Telescope' },
 
 	-- keymaps for telescope specific tasks
-	keys = {
-
-		{
-			'<leader>ff',
-			function()
-				require('telescope.builtin').find_files()
-			end,
-			desc = '[F]ind [F]iles',
-		},
-
-		{
-			'<leader>fg',
-			function()
-				require('telescope.builtin').live_grep()
-			end,
-			desc = '[F]ind by [G]rep',
-		},
-
-		{
-			'<leader>fb',
-			function()
-				require('telescope.builtin').buffers()
-			end,
-			desc = '[F]ind [B]uffers',
-		},
-
-		{
-			'<leader>fh',
-			function()
-				require('telescope.builtin').help_tags()
-			end,
-			desc = '[F]ind [H]elp',
-		},
-	},
+	keys = keymaps,
 
 	opts = {},
 }

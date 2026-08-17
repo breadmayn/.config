@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/lsp/lua_ls.lua
+-- lua/lsp/servers/lua.lua
 --
 -- This file denotes LuaLS specific configurations
 --
