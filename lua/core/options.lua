@@ -50,6 +50,9 @@ vim.o.scrolloff = 15
 -- when performing an operation that would fail dur to unsaved changes, raise dialog asking if you would like to save the current files
 vim.o.confirm = true
 
+-- always show the sign column for diagnostics, git changes, etc
+vim.opt.signcolumn = 'yes'
+
 -- 1a. default indentation configuration --
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
