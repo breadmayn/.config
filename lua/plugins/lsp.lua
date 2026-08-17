@@ -13,6 +13,9 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			-- server specifc configurations
+			vim.lsp.config('lua_ls', require('lsp.lua_ls'))
+
 			-- on lsp attach enable lsp keymaps
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
