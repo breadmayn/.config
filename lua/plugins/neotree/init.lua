@@ -21,7 +21,7 @@ return {
 	lazy = false,
 
 	-- keymaps related to neo-tree
-	keys = require('lua.plugins.neotree.keymaps'),
+	keys = require('plugins.neotree.keymaps'),
 
 	-- settings
 	opts = {
