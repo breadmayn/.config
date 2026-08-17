@@ -15,6 +15,7 @@ return {
 		config = function()
 			-- server specifc configurations
 			vim.lsp.config('lua_ls', require('lsp.lua_ls'))
+			vim.lsp.config('clangd', require('lsp.clangd_ls'))
 
 			-- on lsp attach enable lsp keymaps
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -64,6 +65,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"lua_ls",
+				'clangd',
 			},
 
 			-- exclude stylua lsp
