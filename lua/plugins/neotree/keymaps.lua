@@ -4,7 +4,6 @@
 --
 -- This file contains the user (me) defined keymaps related to the plugin manages by this directory
 --
---
 -- ]]
 
 return {
