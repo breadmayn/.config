@@ -35,7 +35,7 @@ return {
 	opts = {
 		filesystem = {
 			-- attempt to suppress netrw (if neotree fails this won't happen and netrw will be fallback)
-			hijack_netrw_behavior = 'open_current',
+			hijack_netrw_behavior = 'open_current', -- this doesn't seem like its working the way i want it to
 
 			-- reveals the selected file and expands its path in the file explorer
 			follow_current_file = {

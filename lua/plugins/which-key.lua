@@ -12,7 +12,7 @@ return {
 	"folke/which-key.nvim",
 
 	-- set the event we would like which-key to load with
-	event = "VimEnter",
+	event = "VeryLazy",
 
 	opts = {
 		-- set the delay between key press and opening which key
