@@ -4,7 +4,7 @@
 --
 -- This file will import telescope.nvim and include our configuration of the plugin
 --
--- Telescope if a plugin which provides fuzzy finder functionality for an extendable set of lists
+-- Telescope is a plugin which provides fuzzy finder functionality for an extendable set of lists
 --
 -- ]]
 
