@@ -24,6 +24,9 @@ vim.o.showmode = true
 -- highlights the line and bolds the line number
 vim.o.cursorline = true
 
+-- sync OS clipboard with NVIM
+vim.o.clipboard = 'unnamedplus'
+
 -- 1a. default indentation configuration --
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
