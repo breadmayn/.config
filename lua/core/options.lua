@@ -27,6 +27,16 @@ vim.o.cursorline = true
 -- sync OS clipboard with NVIM
 vim.o.clipboard = 'unnamedplus'
 
+-- manage how white space appears in NVIM
+	-- see `:help list`
+	-- see `:help listchars`
+vim.o.list = true
+vim.opt.listchars = {
+	tab = '» ',
+	trail = '·',
+	nbsp = '␣'
+}
+
 -- 1a. default indentation configuration --
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
