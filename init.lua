@@ -9,6 +9,7 @@
 -- 	a. nerd-font toggle
 -- 2. core personalization include
 -- 3. bootstrap lazy package manager
+-- 4. auto-commands
 --
 -- ]]
 
@@ -25,3 +26,5 @@ require("core")
 -- 3. bootstrap lazy package manager and all the specified plugins
 require("package_manager")
 
+-- 4. auto-commands
+require("autocmds")
