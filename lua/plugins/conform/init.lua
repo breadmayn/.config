@@ -8,9 +8,6 @@
 --
 -- ]]
 
--- load keymaps from keymaps file
-local keymaps = require('plugins.conform.keymaps')
-
 return {
 	"stevearc/conform.nvim",
 	opts = {
@@ -20,7 +17,7 @@ return {
 	},
 
 	-- keymaps for conform.nvim
-	keys = keymaps,
+	keys = require('plugins.conform.keymaps'),
 
 	-- adding cmd to resolve if conform isn't already loaded
 	-- note: calling ConformInfo will fully load conform.nvim

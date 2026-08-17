@@ -8,9 +8,6 @@
 --
 -- ]]
 
--- load keymaps from keymap file
-local keymaps = require('plugins.neotree.keymaps')
-
 return {
 	'nvim-neo-tree/neo-tree.nvim',
 	version = '*',
@@ -24,7 +21,7 @@ return {
 	lazy = false,
 
 	-- keymaps related to neo-tree
-	keys = keymaps,
+	keys = require('lua.plugins.neotree.keymaps'),
 
 	-- settings
 	opts = {

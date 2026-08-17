@@ -8,9 +8,6 @@
 --
 -- ]]
 
--- load keymaps from keymap file
-local keymaps = require('plugins.lsp.keymaps')
-
 return {
 	-- install lspconfig
 	{
@@ -23,7 +20,7 @@ return {
 			-- on LSPAttach, enable telescope nagivation keymaps
 			vim.api.nvim_create_autocmd('LspAttach', {
 				callback = function(event)
-					keymaps.setup(event.buf)
+					require('plugins.lsp.keymaps').setup(event.buf)
 				end,
 			})
 

@@ -9,9 +9,6 @@
 --
 -- ]]
 
--- load keymaps from keymap file
-local keymaps = require('plugins.overseer.keymaps')
-
 return {
 	'stevearc/overseer.nvim',
 
@@ -24,7 +21,7 @@ return {
 	},
 
 	-- keymaps related to managing overseer functionality
-	keys = keymaps,
+	keys = require('plugins.overseer.keymaps'),
 
 	opts = {},
 
