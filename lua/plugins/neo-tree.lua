@@ -25,9 +25,7 @@ return {
 
 		{
 			'<leader>e',
-			function()
-				vim.cmd('NeoTree toggle reveal')
-			end,
+			'<cmd>Neotree toggle reveal<CR>',
 			desc = 'Toggle file explorer'
 		},
 
@@ -36,11 +34,15 @@ return {
 	-- settings
 	opts = {
 		filesystem = {
+			-- attempt to suppress netrw (if neotree fails this won't happen and netrw will be fallback)
+			hijack_netrw_behavior = 'open_current',
+
 			-- reveals the selected file and expands its path in the file explorer
 			follow_current_file = {
 				enabled = true,
 			},
 		},
+
 		event_handlers = {
 			-- create handler to close the file explorer once opening the selected file
 			{
