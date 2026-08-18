@@ -13,19 +13,18 @@
 --		Everything else: uses clangd from path (mason installed)
 -- ]]
 local function select_clangd_binary()
-	local xcode_project = vim.fs.find(function(name, _)
-		return name:match('%.xcodeproj$') ~= nil or name:match('%.xcworkspace$') ~= nil
-	end, {
-		path = vim.fn.getcwd(),
-		upward = true,
-		type = 'directory',
-		limit = 1,
-	})
+	local system_clangd_binary_path = '/usr/bin/clangd'
 
-	if #xcode_project > 0 and vim.fn.executable('/usr/bin/clangd') == 1 then
-		return '/usr/bin/clangd'
+	-- iterate over the files in the parent dir (where NVIM was invoked)
+	for name, type in vim.fs.dir(vim.fn.getcwd()) do
+		if type == 'directory' and (name:match('%.xcodeproj$') ~= nil or name:match('%.xcworkspace$') ~= nil) then
+			if vim.fn.executable(system_clangd_binary_path) == 1 then
+				return system_clangd_binary_path
+			end
+		end
 	end
 
+	-- return default mason installed clangd
 	return 'clangd'
 end
 
