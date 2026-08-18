@@ -14,7 +14,7 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			-- include diagnostics setup
-			require('lua.plugins.lsp.diagnostics').setup()
+			require('plugins.lsp.diagnostics').setup()
 
 			-- server specifc configurations
 			vim.lsp.config('lua_ls', require('plugins.lsp.servers.lua'))
