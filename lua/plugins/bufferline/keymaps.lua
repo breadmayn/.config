@@ -9,13 +9,13 @@
 return {
 
 	{
-		'<leader>b]',
+		'<leader>]b',
 		'<cmd>BufferLineCycleNext<CR>',
 		desc = 'next [b]uffer',
 	},
 
 	{
-		'<leader>b[',
+		'<leader>[b',
 		'<cmd>BufferLineCyclePrev<CR>',
 		desc = 'previous [b]uffer',
 	},

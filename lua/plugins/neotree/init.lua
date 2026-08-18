@@ -26,12 +26,19 @@ return {
 	-- settings
 	opts = {
 		filesystem = {
-			-- attempt to suppress netrw (if neotree fails this won't happen and netrw will be fallback)
-			hijack_netrw_behavior = 'open_current', -- this doesn't seem like its working the way i want it to
-
 			-- reveals the selected file and expands its path in the file explorer
 			follow_current_file = {
 				enabled = true,
+			},
+
+			window = {
+				-- override default mappings
+				mappings = {
+					['<CR>'] = 'open', -- keep default open functionality with <CR> (enter)
+					['w'] = 'open_with_window_picker',
+					['s'] = 'vsplit_with_window_picker', -- split left or right of the selected window
+					['S'] = 'split_with_window_picker', -- split above or below of the selected window
+				},
 			},
 		},
 
