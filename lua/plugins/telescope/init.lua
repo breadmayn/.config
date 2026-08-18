@@ -43,3 +43,4 @@ return {
 		telescope.load_extension('ui-select') -- enable telescope UI selector
 	end,
 }
+

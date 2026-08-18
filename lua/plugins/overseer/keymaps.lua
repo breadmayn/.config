@@ -11,12 +11,13 @@ return {
 	{
 		'<leader>or',
 		'<cmd>OverseerRun<CR>',
-		desc = '[O]verseer [R]un task',
+		desc = '[o]verseer [r]un task',
 	},
 
 	{
 		'<leader>ot',
 		'<cmd>OverseerToggle<CR>',
-		desc = '[O]verseer [T]oggle task list',
+		desc = '[o]verseer [t]oggle task list',
 	},
 }
+

@@ -1,38 +1,42 @@
 -- [[
 --
--- This file will contain the default keymaps that I personally like to use.
--- This file should only contain keymaps restricted to vim specific keymaps meaning that plugin specific keymaps should NOT exist here
+-- lua/core/keymaps.lua
+--
+-- This file contains the functional core NVIM keymaps
+--
+-- This file should NOT contain plugin specific keymaps
 --
 -- Table of Contents:
--- 1. Forcing vim motions relative to normal editor cursor navigation
--- 	a. Disable arrow key navigation in normal mode and visual mode
--- 	b. Disable option + arrow key navigation in normal mode (this should just be vim motion 'b')
--- 2. Allow macOS navigation during insert mode
--- 3. Extra transitions out of modes into normal mode
--- 4. Window management
--- 5. Quickfix list
+--		1. Restricting IDE-like navigation
+--			a. Disable arrow key navigation during normal + visual mode
+--			b. Disable macOS - nagivation (option + arrow key)
+--		2. Enable macOS-like nagivation for insert mode
+--		3. Extra transitions into normal mode
+--		4. Window management (NVIM native)
+--		5. Quickfix list
+--
 -- ]]
 
--- 1a. Disable default/macOS navigation
-	-- In order to force learning of vim motions, lets remove arrow key usage for cursor navigation in normal mode
-	-- note: vim.keymap.set(in normal mode, this input, causes this action) -> setting a keymap so that in normal mode the arrow keys, will do nothing but echo out a warning message
-	--
-	-- vim command tip: what I used here was V to highlight the line that I wanted to perform find + replace, then i did `:s" which sets the line range because of the visual mode whole line highlight
-	-- then did :s/<find>/replace/g where g denotes globally where in the line scope i defined will find all and replace all - not just stopping at the first instance
+-- 1a. Disable arrow key navigation during normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move left!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move right!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move up!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move down!!"<CR>')
 
+-- visual mode 
 vim.keymap.set('v', '<left>', '<cmd>echo "Use h to move left!!"<CR>')
 vim.keymap.set('v', '<right>', '<cmd>echo "Use l to move right!!"<CR>')
 vim.keymap.set('v', '<up>', '<cmd>echo "Use k to move up!!"<CR>')
 vim.keymap.set('v', '<down>', '<cmd>echo "Use j to move down!!"<CR>')
 
 -- 1b. Disable option + arrow key navigation in normal mode
-	-- magically <option-left> is interpreted as <M-b> in NVIM/VIM
+	-- <option-left> is interpreted as <M-b> in NVIM/VIM
 vim.keymap.set('n', '<M-b>', '<cmd>echo "Use b to move to the beginning of the previous (or current) word!!"<CR>')
 vim.keymap.set('n', '<M-f>', '<cmd>echo "Use w/e to move forward!!"<CR>')
+
+-- visual mode
+vim.keymap.set('v', '<M-b>', '<cmd>echo "Use b to move to the beginning of the previous (or current) word!!"<CR>')
+vim.keymap.set('v', '<M-f>', '<cmd>echo "Use w/e to move forward!!"<CR>')
 
 -- 2. Allow macOS-like navigation in insert mode
 	-- Here because <M-b> is invoked using option + left
@@ -45,6 +49,7 @@ vim.keymap.set('i', '<M-BS>', '<C-w>', { desc = 'macOS style backspace to clear 
 vim.keymap.set('i', 'jjk', '<Esc>', { desc = 'Exit insert mode and return to normal mode' })
 vim.keymap.set('i', 'kkj', '<Esc>', { desc = 'Exit insert mode and return to normal mode' })
 
+-- terminal mode
 vim.keymap.set('t', 'jjk', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
 vim.keymap.set('t', 'kkj', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
 
@@ -77,4 +82,5 @@ vim.keymap.set('n', '<leader>q', function()
 	else
 		vim.cmd('copen')
 	end
-end, { desc = 'Toggle quickfix list' })
+end, { desc = 'Toggle [q]uickfix list' })
+

@@ -13,7 +13,7 @@ function M.setup(bufnr)
 	local function map(mode, lhs, rhs, desc)
 		vim.keymap.set(mode, lhs, rhs, {
 			buffer = bufnr,
-			desc = 'Git: ' .. desc,
+			desc = 'git: ' .. desc,
 		})
 	end
 
@@ -23,18 +23,18 @@ function M.setup(bufnr)
 	-- [[ normal mode navigation keymaps ]]
 	map('n', ']h', function()
 		require('gitsigns').nav_hunk('next')
-	end, 'git next [h]unk')
+	end, 'next [h]unk')
 
 	map('n', '[h', function()
 		require('gitsigns').nav_hunk('prev')
-	end, 'git previous [h]unk')
+	end, 'previous [h]unk')
 
 	-- [[ visual mode actions ]]
-	map('v', '<leader>hs', require('gitsigns').stage_hunk, 'git [h]unk [s]tage')
+	map('v', '<leader>hs', require('gitsigns').stage_hunk, '[h]unk [s]tage')
 
-	map('v', '<leader>hp', require('gitsigns').preview_hunk, 'git [h]unk [p]review')
+	map('v', '<leader>hp', require('gitsigns').preview_hunk, '[h]unk [p]review')
 
-	map('v', '<leader>hr', require('gitsigns').reset_hunk, 'git [h]unk [r]eset')
+	map('v', '<leader>hr', require('gitsigns').reset_hunk, '[h]unk [r]eset')
 
 	-- [[ normal mode actions ]]
 	-- theres def more to add here but currently i still use the terminal

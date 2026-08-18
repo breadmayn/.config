@@ -1,16 +1,20 @@
 -- [[
 --
--- This file denotes all the NVIM options that we would like to set as default for our configuration
+-- lua/core/options.lua
+--
+-- This file contains NVIM options that are set globally - apart of the default configuration
+--
 -- See `:help vim.o`
 -- For more options `:help option-list`
 --
 -- Table of Contents:
--- 1. Generic editor configuration
-	-- a. default indentation configuration
--- 2. Window management
+--		1. Generic editor configurations
+--			a. default indentation configuration
+--		2. Window management
+--
 -- ]]
 
--- 1. Generic editor configuration --
+-- [[ 1. Generic editor configuration ]]
 
 -- make line numbers default
 vim.o.number = true
@@ -63,3 +67,4 @@ vim.opt.expandtab = true
 
 vim.o.splitright = true
 vim.o.splitbelow = true
+

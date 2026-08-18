@@ -13,7 +13,7 @@ return {
 		function()
 			require("conform").format()
 		end,
-		desc = "[F]ormat current buffer",
+		desc = "[f]ormat current buffer",
 	},
 
 }

@@ -10,35 +10,35 @@
 return {
 
 	{
-		'<leader>ff',
+		'<leader>sf',
 		function()
 			require('telescope.builtin').find_files()
 		end,
-		desc = '[F]ind [F]iles',
+		desc = '[s]earch [f]iles',
 	},
 
 	{
-		'<leader>fg',
+		'<leader>sg',
 		function()
 			require('telescope.builtin').live_grep()
 		end,
-		desc = '[F]ind by [G]rep',
+		desc = '[s]earch by [g]rep',
 	},
 
 	{
-		'<leader>fb',
+		'<leader>sb',
 		function()
 			require('telescope.builtin').buffers()
 		end,
-		desc = '[F]ind [B]uffers',
+		desc = '[s]earch [b]uffers',
 	},
 
 	{
-		'<leader>fh',
+		'<leader>sh',
 		function()
 			require('telescope.builtin').help_tags()
 		end,
-		desc = '[F]ind [H]elp',
+		desc = '[s]earch [h]elp',
 	},
 }
 

@@ -11,7 +11,7 @@ return {
 	{
 		'<leader>e',
 		'<cmd>Neotree toggle reveal<CR>',
-		desc = 'Toggle file explorer'
+		desc = 'toggle file explorer'
 	},
 
 }

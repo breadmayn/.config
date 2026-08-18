@@ -22,24 +22,24 @@ function M.setup(bufnr)
 
 	map('gd', function()
 		require('telescope.builtin').lsp_definitions()
-	end, '[G]o to [D]efinition')
+	end, '[g]o to [d]efinition')
 
 	map('gr', function()
 		require('telescope.builtin').lsp_references()
-	end, '[G]o to [R]eferences')
+	end, '[g]o to [r]eferences')
 
 	map('gI', function()
 		require('telescope.builtin').lsp_implementations()
-	end, '[G]o to [I]mplementations')
+	end, '[g]o to [I]mplementations')
 
 	map('<leader>ds', function()
 		require('telescope.builtin').lsp_document_symbols()
-	end, '[D]ocument [S]ymbols')
+	end, '[d]ocument [s]ymbols')
 
 	-- default lsp functionality
-	map("K", vim.lsp.buf.hover, "Hover documentation")
-	map("<leader>rn", vim.lsp.buf.rename, "[R]e-[N]ame symbol")
-	map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+	map("K", vim.lsp.buf.hover, "hover documentation")
+	map("<leader>rn", vim.lsp.buf.rename, "[r]e-[n]ame symbol")
+	map("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
 
 	-- [[ lsp diagnostics ]]
 	map ('<leader>dd', function()
@@ -50,11 +50,11 @@ function M.setup(bufnr)
 
 	map(']d', function()
 		vim.diagnostic.jump({ count = 1 })
-	end, 'Next [d]iagnostic')
+	end, 'next [d]iagnostic')
 
 	map('[d', function()
 		vim.diagnostic.jump({ count = -1 })
-	end, 'Previous [d]iagnostic')
+	end, 'previous [d]iagnostic')
 
 end
 

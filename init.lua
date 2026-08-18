@@ -1,15 +1,9 @@
 -- [[
+-- init.lua
 --
--- This is the start of my NVIM journey.
+-- This is the starting point of nvim loading
 --
--- From my understanding, this is the start point of what nvim will configure when invoking the nvim command on a file or a directory.
---
--- Table Of Contents:
--- 1. initial setup (leader key)
--- 	a. nerd-font toggle
--- 2. core personalization include
--- 3. bootstrap lazy package manager
--- 4. auto-commands
+-- This file will orchestrate the different parts of the NVIM setup specified in this repo
 --
 -- ]]
 
@@ -26,5 +20,3 @@ require("core")
 -- 3. bootstrap lazy package manager and all the specified plugins
 require("package_manager")
 
--- 4. auto-commands
-require("autocmds")
