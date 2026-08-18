@@ -21,13 +21,40 @@ return {
 	keys = require('plugins.windowpicker.keymaps'),
 
 	opts = {
+		-- selection UI
 		hint = 'floating-big-letter',
+
+		-- chars used to select window
 		selection_chars = 'FJDKSLA;CMRUEIWOQP',
+
 		picker_config = {
 			handle_mouse_click = false, -- force KDD
 		},
-		show_prompt = true,
-		prompt_message = 'Pick window: ',
+
+		-- manage what windows can be selected (filtering out windows)
+		filter_fules = {
+			-- exclude the current window that we are currently in?
+			include_current_win = false,
+
+			-- if there is only one window to select, don't show the picker and autoselect it
+			autoselect_one = true,
+
+			-- bo means buffer options
+			bo = {
+				-- specify filetypes to exclude
+				filetype = {
+					'neo-tree',
+					'neo-tree-popup',
+					'notify',
+				},
+
+				-- specify buffer types to exclude
+				buftype = {
+					'terminal',
+					'quickfix',
+				},
+			},
+		},
 	},
 }
 
