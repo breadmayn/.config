@@ -40,6 +40,22 @@ function M.setup(bufnr)
 	map("K", vim.lsp.buf.hover, "Hover documentation")
 	map("<leader>rn", vim.lsp.buf.rename, "[R]e-[N]ame symbol")
 	map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+
+	-- [[ lsp diagnostics ]]
+	map ('<leader>dd', function()
+		vim.diagnostic.open_float({
+			scope = 'cursor',
+		})
+	end, '[d]iagnostic [d]etails')
+
+	map(']d', function()
+		vim.diagnostic.jump({ count = 1 })
+	end, 'Next [d]iagnostic')
+
+	map('[d', function()
+		vim.diagnostic.jump({ count = -1 })
+	end, 'Previous [d]iagnostic')
+
 end
 
 return M
