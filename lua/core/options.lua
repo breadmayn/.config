@@ -57,6 +57,11 @@ vim.o.confirm = true
 -- always show the sign column for diagnostics, git changes, etc
 vim.opt.signcolumn = 'yes'
 
+-- enable project-local configurations (<project root dir>/.nvim.lua)
+	-- see `:help exrc`
+	-- project config file needs to be trusted with :trust
+vim.o.exrc = true
+
 -- 1a. default indentation configuration --
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4

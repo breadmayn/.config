@@ -33,6 +33,14 @@ return {
 				-- telescope picker themes
 				['ui-select'] = require('telescope.themes').get_dropdown(),
 			},
+
+			-- enable projects to widen the search surface by setting vim.g.project_search_dirs in their own .nvim.lua file
+			-- nil everywhere else which telescope's default configuration, so if not specified projects will have default
+			-- telescope funtionality
+			pickers = {
+				find_files = { search_dirs = vim.g.project_search_dirs },
+				live_grep = { search_dirs = vim.g.project_serarch_dirs },
+			},
 		}
 	end,
 
