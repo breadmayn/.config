@@ -9,7 +9,7 @@
 local M = {}
 
 -- [[
--- This utility is enhancing the fallback pattern by dynamically discovering scripts in <project>/scripts/ directory
+-- This utility is enhancing the fallback pattern by dynamically discovering scripts in <project>/.nvim/scripts/ directory
 -- ]]
 function M.get_project_scripts()
 	local root = vim.fn.getcwd() -- note that the project root dir is where nvim will be invoked
