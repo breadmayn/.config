@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/plugins/treesitter.lua
+-- lua/plugins/treesitter/init.lua
 --
 -- This file will import treesitter.nvim and include our configurations of the plugin
 --
@@ -18,20 +18,12 @@ return {
 	build = ':TSUpdate',
 
 	config = function()
-		local treesitter = require('nvim-treesitter')
+		local languages = require('plugins.treesitter.languages')
 
-		-- list of parsers that i currently use
-		local parsers = {
-			'lua',
-			'c',
-			'cpp',
-			'json',
-			'vim',
-			'vimdoc',
-		}
+		require('nvim-treesitter').install(languages)
 
-		-- automatically download the specified parsers that i use
-		treesitter.install(parsers)
+		-- include autocommands
+		require('plugins.treesitter.autocmds')
 	end,
 }
 
