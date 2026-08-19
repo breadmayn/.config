@@ -40,5 +40,23 @@ return {
 		end,
 		desc = '[s]earch [h]elp',
 	},
+
+	{
+		'<leader>sn',
+		function()
+			require('telescope.builtin').find_files({
+				cwd = vim.fn.stdpath('config'),
+			})
+		end,
+		desc = '[s]earch [n]eovim config',
+	},
+
+	{
+		'<leader>sk',
+		function()
+			require('telescope.builtin').keymaps()
+		end,
+		desc = '[s]earch [k]eymaps',
+	},
 }
 
