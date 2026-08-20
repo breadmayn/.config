@@ -34,16 +34,28 @@ return {
 			-- ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 			-- ]]
 			preset = 'default',
-		}
-	},
+		},
 
-	-- define sources that we might allow blink to attempt to auto-complete
-	sources = {
-		default = {
-			'lsp',
-			'path',
-			'snippets',
-			'buffer',
+		-- define sources that we might allow blink to attempt to auto-complete
+		sources = {
+			default = {
+				'lsp',
+				'path',
+				'snippets',
+				'buffer',
+			},
+		},
+
+		cmdline = {
+			enabled = true,
+
+			-- blink completion for command line
+			completion = {
+				menu = {
+					-- automatically show suggestions for NVIM command line
+					auto_show = true,
+				},
+			},
 		},
 	},
 }
