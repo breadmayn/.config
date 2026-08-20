@@ -69,6 +69,9 @@ vim.opt.signcolumn = 'yes'
 	-- project config file needs to be trusted with :trust
 vim.o.exrc = true
 
+-- save undo history
+vim.o.undofile = true
+
 -- 1a. default indentation configuration --
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
