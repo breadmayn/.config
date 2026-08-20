@@ -18,25 +18,15 @@
 -- ]]
 
 -- 1a. Disable arrow key navigation during normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move left!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move right!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move up!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move down!!"<CR>')
-
--- visual mode 
-vim.keymap.set('v', '<left>', '<cmd>echo "Use h to move left!!"<CR>')
-vim.keymap.set('v', '<right>', '<cmd>echo "Use l to move right!!"<CR>')
-vim.keymap.set('v', '<up>', '<cmd>echo "Use k to move up!!"<CR>')
-vim.keymap.set('v', '<down>', '<cmd>echo "Use j to move down!!"<CR>')
+vim.keymap.set({ 'n', 'v' }, '<left>', '<cmd>echo "Use h to move left!!"<CR>')
+vim.keymap.set({ 'n', 'v' }, '<right>', '<cmd>echo "Use l to move right!!"<CR>')
+vim.keymap.set({ 'n', 'v' }, '<up>', '<cmd>echo "Use k to move up!!"<CR>')
+vim.keymap.set({ 'n', 'v' }, '<down>', '<cmd>echo "Use j to move down!!"<CR>')
 
 -- 1b. Disable option + arrow key navigation in normal mode
 	-- <option-left> is interpreted as <M-b> in NVIM/VIM
-vim.keymap.set('n', '<M-b>', '<cmd>echo "Use b to move to the beginning of the previous (or current) word!!"<CR>')
-vim.keymap.set('n', '<M-f>', '<cmd>echo "Use w/e to move forward!!"<CR>')
-
--- visual mode
-vim.keymap.set('v', '<M-b>', '<cmd>echo "Use b to move to the beginning of the previous (or current) word!!"<CR>')
-vim.keymap.set('v', '<M-f>', '<cmd>echo "Use w/e to move forward!!"<CR>')
+vim.keymap.set({ 'n', 'v' }, '<M-b>', '<cmd>echo "Use b to move to the beginning of the previous (or current) word!!"<CR>')
+vim.keymap.set({ 'n', 'v' }, '<M-f>', '<cmd>echo "Use w/e to move forward!!"<CR>')
 
 -- 2. Allow macOS-like navigation in insert mode
 	-- Here because <M-b> is invoked using option + left
@@ -46,20 +36,16 @@ vim.keymap.set('i', '<M-f>', '<C-Right>', { desc = 'macOS style navigation to th
 vim.keymap.set('i', '<M-BS>', '<C-w>', { desc = 'macOS style backspace to clear entire word (behind current cursor placement)' })
 
 -- 3. Extra transitions out of modes into normal mode
-vim.keymap.set('i', 'jjk', '<Esc>', { desc = 'Exit insert mode and return to normal mode' })
-vim.keymap.set('i', 'kkj', '<Esc>', { desc = 'Exit insert mode and return to normal mode' })
-
--- terminal mode
-vim.keymap.set('t', 'jjk', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
-vim.keymap.set('t', 'kkj', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
+vim.keymap.set({ 'i', 't' }, 'jjk', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
+vim.keymap.set({ 'i', 't' }, 'kkj', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
 
 -- 4. Window management
     -- see `:help wincmd`
     -- <C-w> is short hand for wincmd I think
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the upper window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the lower window' })
+vim.keymap.set({ 'n', 't' }, '<C-h>', [[<cmd>wincmd h<CR>]], { desc = 'Move focus to the left window' })
+vim.keymap.set({ 'n', 't' }, '<C-l>', [[<cmd>wincmd l<CR>]], { desc = 'Move focus to the right window' })
+vim.keymap.set({ 'n', 't' }, '<C-j>', [[<cmd>wincmd j<CR>]], { desc = 'Move focus to the upper window' })
+vim.keymap.set({ 'n', 't' }, '<C-k>', [[<cmd>wincmd k<CR>]], { desc = 'Move focus to the lower window' })
 
 -- 5. Quickfix list
 vim.keymap.set('n', ']q', '<cmd>cnext<CR>', { desc = 'Next quickfix item' })
