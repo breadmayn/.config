@@ -28,8 +28,15 @@ vim.o.showmode = true
 -- highlights the line and bolds the line number
 vim.o.cursorline = true
 
--- sync OS clipboard with NVIM
-vim.o.clipboard = 'unnamedplus'
+-- show user wrapping file after finding last occurence
+vim.opt.wrapscan = true
+vim.opt.shortmess:remove 's'
+
+-- schedule setting this option after UiEnter because of startup time impact
+vim.schedule(function()
+	-- sync OS clipboard with NVIM
+	vim.o.clipboard = 'unnamedplus'
+end)
 
 -- manage how white space appears in NVIM
 	-- see `:help list`
@@ -68,7 +75,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 
--- 2. Window management --
+-- [[ 2. Window management ]]
 
 vim.o.splitright = true
 vim.o.splitbelow = true
