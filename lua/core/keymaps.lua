@@ -12,6 +12,7 @@
 --			b. Disable macOS - nagivation (option + arrow key)
 --		2. Enable macOS-like nagivation for insert mode
 --		3. Extra transitions into normal mode
+--			a. Terminal mode exit
 --		4. Window management (NVIM native)
 --		5. Quickfix list
 --
@@ -38,6 +39,9 @@ vim.keymap.set('i', '<M-BS>', '<C-w>', { desc = 'macOS style backspace to clear 
 -- 3. Extra transitions out of modes into normal mode
 vim.keymap.set({ 'i', 't' }, 'jjk', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
 vim.keymap.set({ 'i', 't' }, 'kkj', [[<C-\><C-n>]], { desc = 'Exit terminal mode and return to normal mode' })
+
+-- 3a. Terminal mode exit
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode and return to normal mode' })
 
 -- 4. Window management
     -- see `:help wincmd`
