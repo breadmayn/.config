@@ -28,15 +28,35 @@ local function select_clangd_binary()
 	return 'clangd'
 end
 
+-- [[
+-- Adds the compile-commands-dir flag and points to <NVIM cwd>/compile_commands.json file
+-- ]]
+local function add_compile_commands_dir_flag_if_necessary()
+	-- guard against project_search_dirs - this will tell us if we have a multi repo setup
+	if not vim.g.project_search_dirs then
+		return {}
+	end
+
+	local cwd = vim.fn.getcwd()
+
+	-- guard against no compile_commands.json file in the NVIM cwd (NVIM cwd is assumed to the project root dir)
+	if vim.filereadable(vim.fs.joinpath(cwd, 'compile_commands.json')) ~= 1 then
+		return {}
+	end
+
+	-- point to NVIM cwd's compile_commands.json 
+	return { '--compile-commands-dir=' .. cwd }
+end
+
 
 return {
-	cmd = {
+	cmd = vim.list_extend({
 		select_clangd_binary(),
 		'--background-index',
 		'--clang-tidy',
 		'--header-insertion=iwyu',
 		'--completion-style=detailed',
-	},
+	}, add_compile_commands_dir_flag_if_necessary()),
 
 	-- NVIM resolves synlinks when naming a buffer, so a file opened through a symlinked dependency
 	-- -- dir gets its REAL path. if left alone, root_markers (`.git`) would root a SECOND clangd instance
