@@ -9,7 +9,7 @@
 return {
 
 	{
-		'<leader>t',
+		'<leader>tt',
 		'<cmd>ToggleTerm<CR>',
 		mode = { 'n', 't' },
 		desc = 'toggle [t]erminal',
