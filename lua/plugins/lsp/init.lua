@@ -21,6 +21,9 @@ return {
 			vim.lsp.config('clangd', require('plugins.lsp.servers.clangd'))
 			vim.lsp.config('sourcekit', require('plugins.lsp.servers.sourcekit'))
 
+			-- sourcekit isn't available through mason - need to explictly enable its functionality
+			vim.lsp.enable('sourcekit')
+
 			-- on LSPAttach, enable telescope nagivation keymaps
 			vim.api.nvim_create_autocmd('LspAttach', {
 				callback = function(event)
