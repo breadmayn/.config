@@ -16,7 +16,7 @@
 -- ]]
 local function add_extra_workspace_folders()
 	-- first guard against the flag being set in exrc file
-	if vim.g.project_lsp_roots ~= 1 then
+	if not vim.g.project_lsp_roots then
 		return {}
 	end
 
@@ -74,7 +74,7 @@ return {
 
 	-- hook in workspace_folders if provided
 	before_init = function(params, _)
-		params.workspace_folders = add_extra_workspace_folders()
+		params.workspaceFolders = add_extra_workspace_folders()
 	end,
 
 	-- update config to match the workspace folder extension in vim.exrc
