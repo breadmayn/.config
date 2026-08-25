@@ -20,6 +20,9 @@ return {
 			vim.lsp.config('lua_ls', require('plugins.lsp.servers.lua'))
 			vim.lsp.config('clangd', require('plugins.lsp.servers.clangd'))
 
+			-- mason doesn't natively support sourcekit-lsp, so manual enablement here
+			vim.lsp.enable('sourcekit')
+
 			-- on LSPAttach, enable telescope nagivation keymaps
 			vim.api.nvim_create_autocmd('LspAttach', {
 				callback = function(event)
