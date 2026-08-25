@@ -17,14 +17,14 @@
 local function add_extra_workspace_folders()
 	-- first guard against the flag being set in exrc file
 	if not vim.g.project_lsp_roots then
-		return {}
+		return nil
 	end
 
-	local cwd = vim.fs.getcwd()
+	local cwd = vim.fn.getcwd()
 	local folders = { { uri = vim.uri_from_fname(cwd), name = vim.fs.basename(cwd) } }
 
 	for _, dir in ipairs(vim.g.project_lsp_roots) do
-		local realpath = vim.uv.fs_readpath(vim.fs.joinpath(cwd, dir))
+		local realpath = vim.uv.fs_realpath(vim.fs.joinpath(cwd, dir))
 
 		-- a root that resolves back to cwd is already the first folder
 		if realpath and realpath ~= cwd then
@@ -74,7 +74,12 @@ return {
 
 	-- hook in workspace_folders if provided
 	before_init = function(params, _)
-		params.workspaceFolders = add_extra_workspace_folders()
+		local folders = add_extra_workspace_folders()
+
+		-- only override when root dir declared
+		if folders then
+			params.workspaceFolders = folders
+		end
 	end,
 
 	-- update config to match the workspace folder extension in vim.exrc
