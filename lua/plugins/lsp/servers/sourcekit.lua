@@ -12,7 +12,8 @@
 -- This utility assumes that the project has adopted the this functionality by specifying
 -- vim.g.project_lsp_roots which are other root dirs for submodules/other repos to compile together
 --
--- This utility will resolve workspace folders for buildServer.json generation
+-- Iterate over the ~other~ project root dirs and add entries for sourcekit to request building for
+-- note: every ~other~ directory requires its own buildServer.json or it will default to fallback flags
 -- ]]
 local function add_extra_workspace_folders()
 	-- first guard against the flag being set in exrc file
