@@ -28,6 +28,20 @@ return {
 	config = function(_, opts)
 		local overseer = require('overseer')
 
+		-- allow projects to switch off tasks that don't belong to it
+		local disabled = vim.list_extend({}, opts.disable_template_modules or {})
+
+		-- iterate over all pairs listed in vim.g.project_task_providers and disable
+		for name, enabled in pairs(vim.g.project_task_providers or {}) do
+			if enabled == false then
+				table.insert(disabled, 'overseer.template' .. name)
+			end
+		end
+
+		if next(disabled) then
+			opts.disable_template_modules = disabled
+		end
+
 		overseer.setup(opts)
 
 		-- registering script fallback template if necessary (this is conditionalized already if a scripts dir exist)
