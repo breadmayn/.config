@@ -34,7 +34,7 @@ return {
 		-- iterate over all pairs listed in vim.g.project_task_providers and disable
 		for name, enabled in pairs(vim.g.project_task_providers or {}) do
 			if enabled == false then
-				table.insert(disabled, 'overseer.template' .. name)
+				table.insert(disabled, 'overseer.template.' .. name)
 			end
 		end
 
