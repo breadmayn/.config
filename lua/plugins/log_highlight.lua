@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/plugins/log-highlight.lua
+-- lua/plugins/log_highlight.lua
 --
 -- This file will import log-highlight.nvim and include our configurations of the plugin
 --

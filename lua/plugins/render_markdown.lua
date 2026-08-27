@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/plugins/render-markdown.lua
+-- lua/plugins/render_markdown.lua
 --
 -- This file will import render-markdown.nvim and include our current configurations of the plugin
 --

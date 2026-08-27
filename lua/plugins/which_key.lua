@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/plugins/which-key.lua
+-- lua/plugins/which_key.lua
 --
 -- This file will import which-key.nvim and include our current configurations of the plugin
 --
