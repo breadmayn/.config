@@ -10,7 +10,9 @@
 
 return {
 	'mrjones2014/smart-splits.nvim',
-	lazy = true,
+
+	-- immediately load smart splits
+	lazy = false,
 
 	keys = require('plugins.smartsplits.keymaps'),
 }
