@@ -46,11 +46,6 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode an
 
 -- 4. Window management
 	-- <C-w> is short hand for wincmd I think
-vim.keymap.set('t', '<C-h>', [[<cmd>wincmd h<CR>]], { desc = 'move focus to the left window' })
-vim.keymap.set('t', '<C-l>', [[<cmd>wincmd l<CR>]], { desc = 'move focus to the right window' })
-vim.keymap.set('t', '<C-j>', [[<cmd>wincmd j<CR>]], { desc = 'move focus to the upper window' })
-vim.keymap.set('t', '<C-k>', [[<cmd>wincmd k<CR>]], { desc = 'move focus to the lower window' })
-
 -- vim.keymap.set({ 'n', 't' }, '<C-h>', [[<cmd>wincmd h<CR>]], { desc = 'move focus to the left window' })
 -- vim.keymap.set({ 'n', 't' }, '<C-l>', [[<cmd>wincmd l<CR>]], { desc = 'move focus to the right window' })
 -- vim.keymap.set({ 'n', 't' }, '<C-j>', [[<cmd>wincmd j<CR>]], { desc = 'move focus to the upper window' })
