@@ -32,7 +32,7 @@ return {
 		},
 
 		-- manage what windows can be selected (filtering out windows)
-		filter_fules = {
+		filter_rules = {
 			-- exclude the current window that we are currently in?
 			include_current_win = false,
 
