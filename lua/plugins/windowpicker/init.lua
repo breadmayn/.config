@@ -37,7 +37,7 @@ return {
 			include_current_win = false,
 
 			-- if there is only one window to select, don't show the picker and autoselect it
-			autoselect_one = true,
+			autoselect_one = false,
 
 			-- bo means buffer options
 			bo = {
@@ -46,6 +46,11 @@ return {
 					'neo-tree',
 					'neo-tree-popup',
 					'notify',
+
+					-- don't offer telescope windows
+					'TelescopePrompt',
+					'TelescopeResults',
+					'TelscopePreview',
 				},
 
 				-- specify buffer types to exclude
