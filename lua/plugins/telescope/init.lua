@@ -25,21 +25,18 @@ return {
 	cmd = { 'Telescope' },
 
 	-- keymaps for telescope specific tasks
-	keys = require('plugins.telescope.keymaps'),
+	keys = require('plugins.telescope.keymaps').keymaps,
 
 	opts = function()
 		return {
+			-- including mappings for telescope functionality within a picker
+			defaults = {
+				mappings = require('plugins.telescope.keymaps').picker_mappings(),
+			},
+
 			extensions = {
 				-- telescope picker themes
 				['ui-select'] = require('telescope.themes').get_dropdown(),
-			},
-
-			-- enable projects to widen the search surface by setting vim.g.project_search_dirs in their own .nvim.lua file
-			-- nil everywhere else which is telescope's default configuration, so if not specified projects will have default
-			-- telescope functionality
-			pickers = {
-				find_files = { search_dirs = vim.g.project_search_dirs },
-				live_grep = { search_dirs = vim.g.project_search_dirs },
 			},
 		}
 	end,
