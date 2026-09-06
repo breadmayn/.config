@@ -11,6 +11,7 @@
 return {
 	'sphamba/smear-cursor.nvim',
 
+	-- lazily load smear-cursor
 	event = 'VeryLazy',
 
 	opts = {

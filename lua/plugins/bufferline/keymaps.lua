@@ -21,9 +21,15 @@ return {
 	},
 
 	{
-		'<leader>bc',
+		'<leader>bx',
 		'<cmd>BufferLinePickClose<CR>',
-		desc = 'choose [b]uffer to [c]lose',
+		desc = 'choose [b]uffer to e[x]it',
+	},
+
+	{
+		'<leader>bp',
+		'<cmd>BufferLinePick<CR>',
+		desc = 'choose [b]uffer to pick',
 	},
 
 }
