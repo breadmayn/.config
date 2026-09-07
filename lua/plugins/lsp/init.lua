@@ -11,7 +11,7 @@
 return {
 	-- install lspconfig
 	{
-		"neovim/nvim-lspconfig",
+		'neovim/nvim-lspconfig',
 		config = function()
 			-- include diagnostics setup
 			require('plugins.lsp.diagnostics').setup()
@@ -19,10 +19,6 @@ return {
 			-- server specifc configurations
 			vim.lsp.config('lua_ls', require('plugins.lsp.servers.lua'))
 			vim.lsp.config('clangd', require('plugins.lsp.servers.clangd'))
-			vim.lsp.config('sourcekit', require('plugins.lsp.servers.sourcekit'))
-
-			-- sourcekit isn't available through mason - need to explictly enable its functionality
-			vim.lsp.enable('sourcekit')
 
 			-- on LSPAttach, enable telescope nagivation keymaps
 			vim.api.nvim_create_autocmd('LspAttach', {
@@ -36,24 +32,23 @@ return {
 
 	-- install mason-lspconfig to allow mason to manage and understand lsp (translations)
 	{
-		"mason-org/mason-lspconfig.nvim",
+		'mason-org/mason-lspconfig.nvim',
 
 		dependencies = {
-			"mason-org/mason.nvim",
-			"neovim/nvim-lspconfig",
+			'mason-org/mason.nvim',
+			'neovim/nvim-lspconfig',
 		},
 
 		opts = {
 			ensure_installed = {
-				"lua_ls",
+				'lua_ls',
 				'clangd',
 			},
 
 			-- exclude stylua lsp
 			automatic_enable = {
-				exclude = {
 					"stylua",
-				},
+					'clangd'
 			},
 		},
 	},
