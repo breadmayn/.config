@@ -45,10 +45,12 @@ return {
 				'clangd',
 			},
 
-			-- exclude stylua lsp
 			automatic_enable = {
-					"stylua",
-					'clangd'
+				-- exclude stylua --lsp in favor for lua_ls
+					exclude = {
+						'stylua',
+					},
+					'clangd',
 			},
 		},
 	},
