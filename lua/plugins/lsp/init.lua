@@ -13,28 +13,13 @@ return {
 	{
 		'neovim/nvim-lspconfig',
 		config = function()
+			-- setup servers configured for nvim
+			vim.lsp.config('lua_ls', require('plugins.lsp.servers.lua'))
+			vim.lsp.config('clangd', require('plugins.lsp.servers.clangd'))
+			vim.lsp.config('bashls', require('plugins.lsp.servers.bash'))
+
 			-- include diagnostics setup
 			require('plugins.lsp.diagnostics').setup()
-
-			local function configure(name, opts)
-				local cfg = vim.tbl_deep_extend('force', {}, opts or {})
-
-				local gate = require('plugins.lsp.resolver').gate(name)
-
-				if gate then
-					cfg.root_dir = gate
-				end
-
-				vim.lsp.config(name, cfg)
-			end
-
-			-- server specifc configurations
-			configure('lua_ls', require('plugins.lsp.servers.lua'))
-			configure('clangd', require('plugins.lsp.servers.clangd'))
-			configure('sourcekit', require('plugins.lsp.servers.sourcekit'))
-
-			-- enable sourcekit explictly (mason doesn't do this for us because sourcekit isn't supported by mason)
-			vim.lsp.enable('sourcekit')
 
 			-- on LSPAttach, enable telescope nagivation keymaps
 			vim.api.nvim_create_autocmd('LspAttach', {
@@ -56,14 +41,17 @@ return {
 		},
 
 		opts = {
+			-- automatic download of bashls requires node on device
 			ensure_installed = {
 				'lua_ls',
 				'clangd',
+				'bashls',
 			},
 
 			automatic_enable = {
 					'lua_ls',
 					'clangd',
+					'bashls',
 			},
 		},
 	},
