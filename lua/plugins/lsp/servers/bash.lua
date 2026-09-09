@@ -1,11 +1,8 @@
 -- [[
 --
--- lua/lsp/servers/clangd.lua
+-- lua/lsp/servers/bash.lua
 --
--- This file denotes clangdLS specific configurations
---
--- The current hope for clangd lsp usage is for generic projects where the setup is lightweight and will eventually
--- provide hooks for projects to configure their clangd usage.
+-- This file denotes bashLS specific configurations
 --
 -- ]]
 
