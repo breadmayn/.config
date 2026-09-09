@@ -18,3 +18,4 @@ return {
 		'--completion-style=detailed',
 	},
 }
+
