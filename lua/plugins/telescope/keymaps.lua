@@ -69,6 +69,22 @@ M.keymaps = {
 		desc = '[s]earch [r]esume',
 	},
 
+	{
+		'<leader>ss',
+		function()
+			require('telescope.builtin').lsp_document_symbols()
+		end,
+		desc = '[s]earch [s]ymbols',
+	},
+
+	{
+		'<leader>sw',
+		function()
+			require('telescope.builtin').lsp_dynamic_workspace_symbols()
+		end,
+		desc = '[s]earch [w]orkspace symbols',
+	},
+
 	-- [[ other commonly used commands not bound to keymaps ]]
 	-- `:Telescope pickers` - opens a picker of cached searches
 }
