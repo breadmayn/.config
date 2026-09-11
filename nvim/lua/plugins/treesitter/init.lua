@@ -1,0 +1,29 @@
+-- [[
+--
+-- lua/plugins/treesitter/init.lua
+--
+-- This file will import treesitter.nvim and include our configurations of the plugin
+--
+-- Treesitter is a plugin used for code parsing which provides functionality such as highlighting, indentation, text objects, etc
+--
+-- ]]
+
+return {
+	'nvim-treesitter/nvim-treesitter',
+
+	-- treesitter main branch doesn't allow lazy loading
+	lazy = false,
+
+	-- automatically stay updated on installed parsers to stay compatible
+	build = ':TSUpdate',
+
+	config = function()
+		local languages = require('plugins.treesitter.languages')
+
+		require('nvim-treesitter').install(languages)
+
+		-- include autocommands
+		require('plugins.treesitter.autocmds')
+	end,
+}
+
