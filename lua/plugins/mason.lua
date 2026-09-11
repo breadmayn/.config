@@ -12,9 +12,12 @@ return {
     'mason-org/mason.nvim',
     opts = {
         ensure_installed = {
-            'stylua', -- lua formatter
-            'clang-format', -- clangd formatter
-        },
+			'lua_ls',
+			'clangd',
+			'basedpyright',
+			'bashls',
+			'marksman',
+		},
     },
 }
 

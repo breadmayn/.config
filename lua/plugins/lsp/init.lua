@@ -12,11 +12,13 @@ return {
 	-- install lspconfig
 	{
 		'neovim/nvim-lspconfig',
+
 		config = function()
-			-- setup servers configured for nvim
-			vim.lsp.config('lua_ls', require('plugins.lsp.servers.lua'))
-			vim.lsp.config('clangd', require('plugins.lsp.servers.clangd'))
-			vim.lsp.config('bashls', require('plugins.lsp.servers.bash'))
+			-- enable lsp configurations for all servers in servers/
+			local servers = require('plugins.lsp.servers')
+			for name, config in pairs(servers) do
+				vim.lsp.config(name, config)
+			end
 
 			-- include diagnostics setup
 			require('plugins.lsp.diagnostics').setup()
@@ -27,6 +29,7 @@ return {
 					require('plugins.lsp.keymaps').setup(event.buf)
 				end,
 			})
+
 
 		end,
 	},
@@ -40,20 +43,16 @@ return {
 			'neovim/nvim-lspconfig',
 		},
 
-		opts = {
-			-- automatic download of bashls requires node on device
-			ensure_installed = {
-				'lua_ls',
-				'clangd',
-				'bashls',
-			},
+		opts = function()
+			local servers = require('plugins.lsp.servers')
+			local names = vim.tbl_keys(servers)
+			table.sort(names)
 
-			automatic_enable = {
-					'lua_ls',
-					'clangd',
-					'bashls',
-			},
-		},
+			return {
+				ensure_installed = names,
+				automatic_enable = names,
+			}
+		end,
 	},
 }
 
