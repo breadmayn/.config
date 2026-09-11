@@ -1,0 +1,17 @@
+# ignore all files to create allowlist pattern for .gitignore
+/*
+
+# allowlist
+!.gitignore
+!/README.md
+!/zsh/
+!/nvim/
+!/tmux/
+
+# explict deny list
+.DS_Store
+*.local
+.zcompdump*
+.zsh_history
+.zsh_sessions/
+
