@@ -72,6 +72,11 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+# redirect zsh metadata/output files
+ZSH_COMPDUMP="$HOME/.cache/zsh/zshcompdump-${HOST}-${ZSH_VERSION}"
+ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
+HISTFILE="$HOME/.local/state/zsh/history"
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
