@@ -111,6 +111,6 @@ source $ZSH/oh-my-zsh.sh
 # automatically enter tmux in interactive terminals
 if [[ -o interactive && -t 0 && -t 1 && -z "$TMUX" ]] \
     && command -v tmux >/dev/null 2>&1; then
-    exec tmux new-session -A -s main
+    exec tmux new-session -c "$HOME"
 fi
 
