@@ -1,8 +1,8 @@
 -- [[
 --
--- lua/lsp/servers/python.lua
+-- lua/lsp/servers/basedpyright.lua
 --
--- This file denotes python language server specific configurations
+-- This file denotes basedpyright language server specific configurations
 --
 -- ]]
 

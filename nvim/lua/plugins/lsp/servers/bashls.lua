@@ -1,6 +1,6 @@
 -- [[
 --
--- lua/lsp/servers/bash.lua
+-- lua/lsp/servers/bashls.lua
 --
 -- This file denotes bashLS specific configurations
 --

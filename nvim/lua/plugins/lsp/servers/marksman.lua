@@ -1,8 +1,8 @@
 -- [[
 --
--- lua/lsp/servers/markdown.lua
+-- lua/lsp/servers/marksman.lua
 --
--- This file denotes markdown language server specific configurations
+-- This file denotes marksman language server specific configurations
 --
 -- ]]
 

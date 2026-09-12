@@ -13,7 +13,7 @@ function M.setup()
 		signs = true,
 		underline = true,
 
-		virutal_test = {
+		virutal_text = {
 			spacing = 2,
 			source = 'if_many',
 		},

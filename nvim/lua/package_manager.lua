@@ -11,7 +11,7 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim" -- ~/.local/share/n
 
 -- install lazy.nvim if not already present on disk
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com.folke/lazy.nvim.git"
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 
 	-- run external command:
 	-- [[

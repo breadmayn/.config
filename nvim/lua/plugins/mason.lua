@@ -10,14 +10,6 @@
 
 return {
     'mason-org/mason.nvim',
-    opts = {
-        ensure_installed = {
-			'lua_ls',
-			'clangd',
-			'basedpyright',
-			'bashls',
-			'marksman',
-		},
-    },
+    opts = {},
 }
 
