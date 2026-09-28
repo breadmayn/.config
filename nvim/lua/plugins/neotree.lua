@@ -20,9 +20,6 @@ return {
 	-- we are going to configure neo-tree to open on startup (so no lazy loading here)
 	lazy = false,
 
-	-- keymaps related to neo-tree
-	keys = require('plugins.neotree.keymaps'),
-
 	-- settings
 	opts = {
 		filesystem = {

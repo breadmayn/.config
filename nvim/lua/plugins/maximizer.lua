@@ -1,14 +1,12 @@
 -- [[
 --
--- lua/plugins/maximizer/init.lua
+-- lua/plugins/maximizer.lua
 --
 -- Maximize is a plugin that focuses the current Neovim window and restore its previous layout
 --
 -- ]]
 
 return {
-  'szw/vim-maximizer',
-
-  keys = require('plugins.maximizer.keymaps'),
+	'szw/vim-maximizer',
 }
 

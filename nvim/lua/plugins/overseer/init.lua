@@ -20,9 +20,6 @@ return {
 		'OverseerTaskAction',
 	},
 
-	-- keymaps related to managing overseer functionality
-	keys = require('plugins.overseer.keymaps'),
-
 	opts = {},
 
 	config = function(_, opts)
