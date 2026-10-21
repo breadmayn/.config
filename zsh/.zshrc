@@ -79,6 +79,15 @@ HISTFILE="$HOME/.local/state/zsh/history"
 
 source $ZSH/oh-my-zsh.sh
 
+# ensure the shared history directory exists
+mkdir -p "${HISTFILE:h}"
+
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY SHARE_HISTORY
+unsetopt INC_APPEND_HISTORY INC_APPEND_HISTORY_TIME
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
