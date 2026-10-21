@@ -79,6 +79,8 @@ HISTFILE="$HOME/.local/state/zsh/history"
 
 source $ZSH/oh-my-zsh.sh
 
+# User configuration
+
 # ensure the shared history directory exists
 mkdir -p "${HISTFILE:h}"
 
@@ -88,7 +90,13 @@ SAVEHIST=100000
 setopt APPEND_HISTORY SHARE_HISTORY
 unsetopt INC_APPEND_HISTORY INC_APPEND_HISTORY_TIME
 
-# User configuration
+# making cls command to wipe tmux history
+cls() {
+    clear
+    if [[ -n "$TMUX" ]]; then
+        tmux clear-history
+    fi
+}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

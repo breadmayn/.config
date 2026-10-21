@@ -28,3 +28,5 @@ clipboard-trim-trailing-spaces = true
 # zsh weird newline
 keybind = shift+enter=text:\x1b\r
 
+# make a keybind that calls cls from zshrc
+keybind = super+k=text:cls\r
