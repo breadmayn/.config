@@ -1,0 +1,30 @@
+# symlink command:
+# ln -s "$HOME/.config/ghostty/config.ghostty "$HOME/Library/Application\ Support/com.mitchellh.ghostty/config.ghostty
+
+theme = Kanagawa wave
+
+# generic font and padding
+font-size = 14
+window-padding-x = 8
+window-padding-y = 6
+
+# default window sizing and never saving window size state
+window-width = 136
+window-height = 30
+window-save-state = never
+
+# let options act as alt for shell/editor shortcuts
+macos-option-as-alt = true
+
+# ghostty native integration with zsh
+shell-integration = zsh
+
+# mouse copy on select
+copy-on-select = true
+
+# removing trailing spaces when copying terminal output
+clipboard-trim-trailing-spaces = true
+
+# zsh weird newline
+keybind = shift+enter=text:\x1b\r
+
