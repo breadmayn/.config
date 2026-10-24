@@ -1,0 +1,4 @@
+# ghostty brew dependencies - surprisingly just ghostty lmao
+
+brew "ghostty"
+

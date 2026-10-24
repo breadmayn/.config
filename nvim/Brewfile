@@ -1,0 +1,15 @@
+# nvim brew dependencies
+# install with: `brew bundle --file="~/.config/nvim/Brewfile"`
+
+brew "neovim"
+
+brew "tree-sitter-cli"
+
+brew "python@3.13"
+
+brew "node"
+
+brew "ripgrep"
+
+brew "fg"
+
