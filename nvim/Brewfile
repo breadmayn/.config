@@ -1,15 +1,17 @@
-# nvim brew dependencies
-# install with: `brew bundle --file="~/.config/nvim/Brewfile"`
+#
+# ~/.config/nvim/Brewfile
+#
+# This file denotes all the packages that the nvim setup requires through brew.
+#
+# install with: `brew bundle --file="/path/to/this/Brewfile"`
+# check with: `brew bundle check --file="/path/to/this/Brewfile"`
+#
 
 brew "neovim"
 
 brew "tree-sitter-cli"
-
 brew "python@3.13"
-
 brew "node"
-
 brew "ripgrep"
-
 brew "fg"
 
