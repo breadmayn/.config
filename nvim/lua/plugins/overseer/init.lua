@@ -22,6 +22,8 @@ return {
 
 	opts = {},
 
+	keys = require('plugins.overseer.keymaps'),
+
 	config = function(_, opts)
 		local overseer = require('overseer')
 
