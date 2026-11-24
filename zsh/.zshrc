@@ -1,133 +1,66 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+#
+# ~/.config/zsh/.zshrc
+#
+# Unlike .zshenv and .zprofile, .zshrc is used to configure your interactive shell
+#
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Propmt initialization
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# --------------------------------------------------
+# Completion
+# --------------------------------------------------
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Make Zsh's builtin completion initialization function available
+autoload -Uz compinit
+# Initializes the completion system
+compinit
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# Enables an interactive completion menu navigatable with arrow keys
+zstyle ':completion:*' menu select
+# Makes completion case-insensitive
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+# --------------------------------------------------
+# History
+#
+# History related keymaps
+# <CTRL + r>: search for prev match in command history
+# <CTRL + s>: search for a match forward
+# <CTRL + G>: cancel history search
+# --------------------------------------------------
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# HISTFILE is the location of persistent command history
+# HISTSIZE is the maximum commands retained in memory
+# SAVEHIST is maximum commands saved to disk
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=100000
+SAVEHIST=50000
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# redirect zsh metadata/output files
-ZSH_COMPDUMP="$HOME/.cache/zsh/zshcompdump-${HOST}-${ZSH_VERSION}"
-ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
-HISTFILE="$HOME/.local/state/zsh/history"
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# ensure the shared history directory exists
 mkdir -p "${HISTFILE:h}"
 
-HISTSIZE=100000
-SAVEHIST=100000
+# HIST_IGNORE_ALL_DUPS Removes older duplicate commands
+# HIST_FIND_NO_DUPS Skips duplicate commands when searching history
+# HIST_IGNORE_SPACE Doesn't record commands beginning with a space
+# HIST_REDUCE_BLANKS Removes unnecessary whitespace from saved commands
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
 
-setopt APPEND_HISTORY SHARE_HISTORY
-unsetopt INC_APPEND_HISTORY INC_APPEND_HISTORY_TIME
+# bindkey enables incremental reverse history search with <CTRL + r>
+bindkey '^R' history-incremental-search-backward
 
-# making cls command to wipe tmux history
-cls() {
-    clear
-    if [[ -n "$TMUX" ]]; then
-        tmux clear-history
-    fi
-}
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# --------------------------------------------------
+# Keyboard navigation
+# --------------------------------------------------
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# automatically enter tmux in interactive terminals
-if [[ -o interactive && -t 0 && -t 1 && -z "$TMUX" ]] \
-    && command -v tmux >/dev/null 2>&1; then
-    exec tmux new-session -c "$HOME"
-fi
+# Use Emacs-style keybindings.
+bindkey -e
 

@@ -1,16 +1,42 @@
-#!/usr/bin/env bash
+#
+# ~/.config/zsh/setup.sh
+#
+# This file will correctly setup/hook in the zsh configuration specified in ~/.config/zsh/
+#
 
-MY_CONFIG_PATH="$HOME/.config/zsh"
-ZSH_CONFIG_PATH="$HOME"
+#!/bin/bash
 
-CONFIG_NAME=".zshrc"
+set -euo pipefail
 
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+SOURCE="$HOME/.config/zsh/.zshenv"
+TARGET="$HOME/.zshenv"
 
-# remove the default zshrc file
-rm -rf "$ZSH_CONFIG_PATH/$CONFIG_NAME"
+# Initialize Homebrew environment.
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# symlink this config file to the default config path
-ln -sfn "$MY_CONFIG_PATH/$CONFIG_NAME" "$ZSH_CONFIG_PATH"
+# Install shell dependencies from Homebrew
+brew bundle --file="$HOME/.config/zsh/Brewfile" --no-upgrade
+
+# Verify that the source configuration exists
+if [[ ! -f "$SOURCE" ]]; then
+    echo "Error: Missing $SOURCE"
+    exit 1
+fi
+
+# Skip if the correct symlink already exists
+if [[ -L "$TARGET" && "$TARGET" -ef "$SOURCE" ]]; then
+    echo "Zsh configuration already linked."
+    exit 0
+fi
+
+# Prevent overwriting an existing configuration
+if [[ -e "$TARGET" || -L "$TARGET" ]]; then
+    echo "Error: $TARGET already exists."
+    exit 1
+fi
+
+# Create the symlink
+ln -s "$SOURCE" "$TARGET"
+
+echo "Zsh configuration linked successfully"
 

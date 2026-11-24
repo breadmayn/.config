@@ -1,0 +1,9 @@
+#
+# ~/.config/Brewfile
+#
+# This file denotes all the brew packages that the configuration of the zsh configuration
+#
+
+# starship for git related zsh shell usage
+brew "starship"
+

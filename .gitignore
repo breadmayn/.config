@@ -1,4 +1,5 @@
 # ignore all files to create allowlist pattern for .gitignore
+# check using: `git status --short --untracked-files=all`
 /*
 
 # allowlist
