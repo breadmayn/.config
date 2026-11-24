@@ -14,3 +14,8 @@ if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Homebrew Python
+if [[ -d "$HOMEBREW_PREFIX/opt/python@3.13/libexec/bin" ]]; then
+    export PATH="$HOMEBREW_PREFIX/opt/python@3.13/libexec/bin:$PATH"
+fi
+
