@@ -9,6 +9,8 @@
 !/nvim/
 !/tmux/
 !/ghostty/
+!/setup/
+!setup.sh
 
 # explict deny list
 .DS_Store

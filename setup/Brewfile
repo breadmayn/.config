@@ -1,0 +1,19 @@
+#
+# ~/.config/setup/Brewfile
+#
+# This file denotes setup for my personal macOS setup - mainly applications
+#
+
+# required for macOS settings script
+brew "dockutil"
+
+cask "discord"
+cask "spotify"
+cask "adguard"
+cask "keepingyouawake"
+
+# macOS utilities
+cask "aldente"
+cask "bettermouse"
+cask "rectangle"
+
