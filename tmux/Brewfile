@@ -1,0 +1,9 @@
+#
+# ~/.config/tmux/Brewfile
+#
+# This file denotes the dependencies related to tmux
+#
+
+# For now, its currently just tmux
+brew "tmux"
+

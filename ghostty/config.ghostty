@@ -1,6 +1,9 @@
 # symlink command:
 # ln -s "$HOME/.config/ghostty/config.ghostty "$HOME/Library/Application\ Support/com.mitchellh.ghostty/config.ghostty
 
+# forcefully start ghostty by invoking tmux
+command = /opt/homebrew/bin/tmux
+
 theme = Kanagawa wave
 
 # generic font and padding
