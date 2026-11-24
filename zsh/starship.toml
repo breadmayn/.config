@@ -1,0 +1,12 @@
+#
+# ~/.config/zsh/starship.toml
+#
+# This file contains the starship plugin for zsh configuration
+#
+
+[line_break]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
