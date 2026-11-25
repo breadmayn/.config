@@ -102,5 +102,12 @@ done < <(/usr/bin/awk '
   $1 == "displaysleep" && profile { print profile, $2 }
 ' <<< "$POWER_SETTINGS")
 
+# Apply More Space directly, regardless of the Displays pane's list setting.
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+if ! /usr/bin/swift "$script_dir/set-display-resolution.swift"; then
+    echo 'Could not apply More Space to the built-in display.' >&2
+    exit 1
+fi
+
 echo 'Preferences written. Log out and back in to reload any remaining settings.'
 
