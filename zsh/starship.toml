@@ -4,9 +4,28 @@
 # This file contains the starship plugin for zsh configuration
 #
 
+# disable adding new lines between output from previous commmand
+# and the current command input field
+add_newline = false
+format = '$character$all[❯](bold) '
+
+[character]
+format = '$symbol  '
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+# Keep the prompt and command input on one line.
 [line_break]
 disabled = true
 
+# removing cmd duration because some interactive commands report duration
+# while in the interactive mode
 [cmd_duration]
+disabled = true
+
+[git_branch]
+format = '[\[ ]($style)[$branch](bold red)[ \]]($style) '
+
+[git_status]
 disabled = true
 
