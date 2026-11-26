@@ -7,7 +7,7 @@
 # disable adding new lines between output from previous commmand
 # and the current command input field
 add_newline = false
-format = '$character$all[❯](bold) '
+format = '$character$directory$git_branch[>](bold) '
 
 [character]
 format = '$symbol  '
